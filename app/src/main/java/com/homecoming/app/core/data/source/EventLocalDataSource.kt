@@ -1,8 +1,9 @@
-package com.homecoming.app.core.data
+package com.homecoming.app.core.data.source
 
-import com.homecoming.app.core.data.model.Event
+import com.homecoming.app.core.model.Event
+import com.homecoming.app.core.model.HomeHighlight
 
-internal object SampleContent {
+internal object EventLocalDataSource {
     val homeHighlight = HomeHighlight(
         title = "Alumni Homecoming Weekend",
         dates = "Oct 12–14",

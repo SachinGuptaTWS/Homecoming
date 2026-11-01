@@ -3,11 +3,11 @@ package com.homecoming.app.feature.events
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun EventsRoute(
-    viewModel: EventsViewModel = viewModel(),
+    viewModel: EventsViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     EventsScreen(uiState = uiState)

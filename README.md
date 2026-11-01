@@ -1,53 +1,58 @@
 # HomeComing
 
-Single-activity Compose app structured like a production Google sample: **typed navigation**, **feature modules**, **repository boundary**, **stateless UI**.
+Single-activity Jetpack Compose app aligned with [Google app architecture](https://developer.android.com/topic/architecture) and [Now in Android](https://github.com/android/nowinandroid) conventions.
 
-## Architecture
+**Full design:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · **Gradle module plan:** [docs/MODULARIZATION_ROADMAP.md](docs/MODULARIZATION_ROADMAP.md)
+
+## Architecture (summary)
 
 ```
 app/
-├── MainActivity.kt          # Edge-to-edge shell only
-├── HomeComingApp.kt           # Theme + root nav
+├── MainActivity.kt / HomeComingApp.kt / HomeComingApplication.kt
+├── di/                         # Hilt modules
 ├── core/
-│   ├── data/                  # EventRepository (+ in-memory impl)
-│   ├── designsystem/theme/    # Material 3 Expressive tokens
-│   └── navigation/            # @Serializable Route, NavHost, top-level bar
-└── feature/
-    ├── home/     Route → ViewModel → Screen
-    ├── events/
-    └── profile/
+│   ├── model/                  # Event, HomeHighlight
+│   ├── domain/                 # Use cases (Flow from repositories)
+│   ├── data/                   # EventRepository + in-memory impl + local source
+│   ├── designsystem/theme/
+│   └── navigation/             # Typed Route, NavHost, bottom bar
+└── feature/{home,events,profile}/
+    Route → @HiltViewModel → Screen (UDF)
 ```
 
 | Layer | Responsibility |
 |-------|----------------|
-| **Route** | Wires `ViewModel`, passes callbacks (no UI) |
-| **Screen** | Pure composable: `UiState` in, events out |
-| **ViewModel** | `stateIn(WhileSubscribed(5_000))` — no manual collectors |
-| **Repository** | Single source for schedule + home highlight |
+| **Screen** | Stateless UI: `UiState` in, events out |
+| **Route** | `hiltViewModel()`, lifecycle-aware collection |
+| **ViewModel** | `stateIn(WhileSubscribed(5_000))` |
+| **Domain** | `Observe*UseCase` — thin wrappers over repository streams |
+| **Data** | Repository is the only public data API |
 
-Navigation uses **type-safe routes** (`composable<Route.Home>`) with Kotlin Serialization, not string routes.
+Navigation: `@Serializable sealed interface Route` with `composable<Route.Home>`.
 
 ## Toolchain
 
-AGP **9.5**, Kotlin **2.4.21**, Compose BOM **2026.09.00**, Navigation **2.10.2**, Baseline Profile **1.5.0**.
+AGP **9.5**, Kotlin **2.4.21**, Compose BOM **2026.09.00**, Navigation **2.10.2**, Hilt **2.60**, KSP, Baseline Profile **1.5.0**.
 
 ## Run
 
-Open in Android Studio **2026.2.2+**, sync, run debug.
+Android Studio **2026.2.2+**, JDK **17**, SDK **37**.
+
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot'
+.\gradlew.bat :app:assembleDebug
+```
+
+Release / baseline profile:
 
 ```powershell
 .\gradlew.bat :app:assembleRelease
-```
-
-Baseline profiles (release speed):
-
-```powershell
 .\gradlew.bat :app:generateReleaseBaselineProfile
 ```
 
 ## Conventions
 
-- User-visible copy in `res/values/strings.xml`
-- `@Immutable` UI state; schedule sorted once at seed
-- No `material-icons-extended`; no duplicate nav logic (`navigateToTopLevel`)
-- Release: R8 full mode, shrink resources, strip debug logs
+- Copy in `res/values/strings.xml`
+- `@Immutable` on feature `*UiState` types
+- No repository service locators — Hilt only
+- Release: R8 full mode, shrink resources

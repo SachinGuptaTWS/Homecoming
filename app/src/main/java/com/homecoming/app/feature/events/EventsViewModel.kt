@@ -2,18 +2,21 @@ package com.homecoming.app.feature.events
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.homecoming.app.core.data.EventRepository
+import com.homecoming.app.core.domain.ObserveScheduleUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class EventsViewModel(
-    repository: EventRepository = EventRepository.default,
+@HiltViewModel
+class EventsViewModel @Inject constructor(
+    observeSchedule: ObserveScheduleUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<EventsUiState> =
-        repository.observeSchedule()
+        observeSchedule()
             .map(::EventsUiState)
             .stateIn(
                 scope = viewModelScope,

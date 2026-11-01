@@ -17,7 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.homecoming.app.R
-import com.homecoming.app.core.data.model.Event
+import com.homecoming.app.core.model.Event
 
 private const val EventRowContentType = "event"
 

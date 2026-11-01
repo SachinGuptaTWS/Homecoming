@@ -1,14 +1,19 @@
 package com.homecoming.app.core.data
 
-import com.homecoming.app.core.data.model.Event
+import com.homecoming.app.core.data.source.EventLocalDataSource
+import com.homecoming.app.core.model.Event
+import com.homecoming.app.core.model.HomeHighlight
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-internal class InMemoryEventRepository : EventRepository {
+@Singleton
+internal class InMemoryEventRepository @Inject constructor() : EventRepository {
 
-    private val schedule = MutableStateFlow(SampleContent.schedule())
-    private val highlight = MutableStateFlow(SampleContent.homeHighlight)
+    private val schedule = MutableStateFlow(EventLocalDataSource.schedule())
+    private val highlight = MutableStateFlow(EventLocalDataSource.homeHighlight)
 
     override fun observeSchedule(): Flow<List<Event>> = schedule.asStateFlow()
 

@@ -1,7 +1,7 @@
 package com.homecoming.app.feature.events
 
 import androidx.compose.runtime.Immutable
-import com.homecoming.app.core.data.model.Event
+import com.homecoming.app.core.model.Event
 
 @Immutable
 data class EventsUiState(

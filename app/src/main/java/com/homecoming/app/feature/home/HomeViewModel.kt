@@ -2,18 +2,21 @@ package com.homecoming.app.feature.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.homecoming.app.core.data.EventRepository
+import com.homecoming.app.core.domain.ObserveHomeHighlightUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class HomeViewModel(
-    repository: EventRepository = EventRepository.default,
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    observeHomeHighlight: ObserveHomeHighlightUseCase,
 ) : ViewModel() {
 
     val uiState: StateFlow<HomeUiState> =
-        repository.observeHomeHighlight()
+        observeHomeHighlight()
             .map { highlight ->
                 HomeUiState(
                     featuredTitle = highlight.title,

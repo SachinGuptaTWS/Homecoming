@@ -1,8 +1,5 @@
-package com.homecoming.app.core.data.model
+package com.homecoming.app.core.model
 
-import androidx.compose.runtime.Immutable
-
-@Immutable
 data class Event(
     val id: String,
     val title: String,
