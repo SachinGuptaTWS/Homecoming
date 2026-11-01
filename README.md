@@ -9,13 +9,14 @@ Single-activity Jetpack Compose app aligned with [Google app architecture](https
 ```
 app/
 ├── MainActivity.kt / HomeComingApp.kt / HomeComingApplication.kt
+├── navigation/                 # NavHost + bottom bar (app-level wiring)
 ├── di/                         # Hilt modules
 ├── core/
 │   ├── model/                  # Event, HomeHighlight
 │   ├── domain/                 # Use cases (Flow from repositories)
 │   ├── data/                   # EventRepository + in-memory impl + local source
 │   ├── designsystem/theme/
-│   └── navigation/             # Typed Route, NavHost, bottom bar
+│   └── navigation/             # Typed Route, destinations, NavController helpers
 └── feature/{home,events,profile}/
     Route → @HiltViewModel → Screen (UDF)
 ```

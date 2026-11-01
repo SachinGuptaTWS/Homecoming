@@ -11,7 +11,7 @@ This document follows [Guide to app architecture](https://developer.android.com/
 | **Single source of truth** | Repositories own app data; ViewModels expose one `StateFlow` of UI state per screen. |
 | **Reactive streams** | Kotlin `Flow` between data and UI; `stateIn(WhileSubscribed(5_000))` in ViewModels. |
 | **Testability** | Constructor injection (Hilt); fake repositories and use cases in unit tests. |
-| **Low coupling** | Features do not import other features’ implementation; navigation uses shared route types. |
+| **Low coupling** | Features do not import other features; `core` never imports `feature`; app `navigation` wires the graph. |
 
 ## Layered model
 
@@ -53,15 +53,16 @@ Package structure mirrors a multi-module graph so Gradle extraction stays mechan
 ```
 com.homecoming.app/
 ├── MainActivity.kt              # Activity shell, edge-to-edge
-├── HomeComingApp.kt             # Theme + root NavHost
+├── HomeComingApp.kt             # Theme + root nav controller
 ├── HomeComingApplication.kt     # @HiltAndroidApp
+├── navigation/                  # App NavHost + bottom bar (wires feature Routes)
 ├── di/                          # Hilt modules
 ├── core/
 │   ├── model/                   # Pure models (no Android UI deps)
 │   ├── domain/                  # Use cases
 │   ├── data/                    # Repositories + data sources
 │   ├── designsystem/            # Theme, tokens, shared UI primitives
-│   └── navigation/              # Routes, NavHost, top-level destinations
+│   └── navigation/              # Route types, top-level destinations, NavController helpers
 └── feature/
     ├── home/                    # HomeRoute, HomeScreen, HomeViewModel, HomeUiState
     ├── events/

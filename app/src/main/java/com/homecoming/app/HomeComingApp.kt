@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.homecoming.app.core.designsystem.theme.HomeComingTheme
-import com.homecoming.app.core.navigation.HomeComingNavHost
+import com.homecoming.app.navigation.HomeComingNavHost
 
 @Composable
 fun HomeComingApp() {

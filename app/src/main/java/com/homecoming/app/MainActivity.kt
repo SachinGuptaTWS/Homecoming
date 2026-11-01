@@ -2,12 +2,12 @@ package com.homecoming.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import dagger.hilt.android.AndroidEntryPoint
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.ui.graphics.toArgb
 import com.homecoming.app.core.designsystem.theme.HomeComingSystemBar
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

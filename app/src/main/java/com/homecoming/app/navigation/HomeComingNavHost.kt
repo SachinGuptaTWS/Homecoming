@@ -1,4 +1,4 @@
-package com.homecoming.app.core.navigation
+package com.homecoming.app.navigation
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
@@ -19,6 +19,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.homecoming.app.core.navigation.Route
+import com.homecoming.app.core.navigation.TopLevelDestination
+import com.homecoming.app.core.navigation.navigateToTopLevel
 import com.homecoming.app.feature.events.EventsRoute
 import com.homecoming.app.feature.home.HomeRoute
 import com.homecoming.app.feature.profile.ProfileRoute
