@@ -40,6 +40,7 @@ AGP **9.5**, Kotlin **2.4.21**, Compose BOM **2026.09.00**, Navigation **2.10.2*
 Java **17**, Spring Boot **3.5**, **GraphQL** API (not REST for product data). Layered hexagonal layout — [docs/BACKEND.md](docs/BACKEND.md).
 
 ```powershell
+docker compose up -d
 $env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot'
 .\gradlew.bat :backend:bootRun
 ```

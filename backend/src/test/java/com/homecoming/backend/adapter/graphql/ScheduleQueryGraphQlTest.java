@@ -15,10 +15,12 @@ import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.graphql.execution.ErrorType;
 import org.springframework.graphql.test.tester.GraphQlTester;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @GraphQlTest(ScheduleQueryController.class)
 @Import(GraphQlErrorAdvice.class)
+@ActiveProfiles("test")
 class ScheduleQueryGraphQlTest {
 
     @Autowired

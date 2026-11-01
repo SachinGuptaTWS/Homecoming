@@ -1,3 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/homecoming
+    username: homecoming
+    password: homecoming
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+
 logging:
   level:
     com.homecoming.backend: DEBUG

@@ -16,12 +16,16 @@ java {
 dependencies {
     implementation(libs.spring.boot.starter.web)
     implementation(libs.spring.boot.starter.graphql)
+    implementation(libs.spring.boot.starter.data.jpa)
     implementation(libs.spring.boot.starter.actuator)
+    implementation(libs.postgresql)
+    implementation(libs.flyway.database.postgresql)
 
     annotationProcessor(libs.spring.boot.configuration.processor)
 
     testImplementation(libs.spring.boot.starter.test)
     testImplementation(libs.spring.graphql.test)
+    testRuntimeOnly(libs.h2)
 }
 
 tasks.withType<Test> {

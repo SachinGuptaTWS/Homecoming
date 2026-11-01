@@ -45,9 +45,13 @@ androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navig
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 spring-boot-starter-graphql = { group = "org.springframework.boot", name = "spring-boot-starter-graphql" }
+spring-boot-starter-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
 spring-graphql-test = { group = "org.springframework.graphql", name = "spring-graphql-test" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
 spring-boot-configuration-processor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
+postgresql = { group = "org.postgresql", name = "postgresql" }
+flyway-database-postgresql = { group = "org.flywaydb", name = "flyway-database-postgresql" }
+h2 = { group = "com.h2database", name = "h2" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

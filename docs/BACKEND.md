@@ -93,9 +93,28 @@ query HomeScreen {
 
 Tests: `.\gradlew.bat :backend:test` (`@GraphQlTest`, unit tests on application services).
 
-## Roadmap (same architecture)
+## Database (PostgreSQL + Flyway)
 
-1. PostgreSQL + JPA implementing existing repository ports.
-2. Spring Security + JWT at the HTTP/GraphQL transport layer.
-3. GraphQL **subscriptions** for live schedule (reuse application services).
-4. Apollo Android client + persisted queries in the app module.
+| Piece | Location |
+|-------|----------|
+| **Docker** | `docker-compose.yml` — Postgres 16, db/user/password `homecoming` |
+| **Migrations** | `backend/src/main/resources/db/migration/` (Flyway, `ddl-auto: validate`) |
+| **JPA entities** | `infrastructure.persistence.jpa.entity` (not exposed to domain) |
+| **Adapters** | `JpaEventRepository`, `JpaHomeHighlightRepository` implement domain ports |
+| **Optional** | Profile `inmemory` skips Postgres (demo adapters only) |
+
+Local:
+
+```powershell
+docker compose up -d
+$env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot'
+.\gradlew.bat :backend:bootRun
+```
+
+Tests use **H2** in PostgreSQL compatibility mode with the same Flyway scripts (`test` profile).
+
+## Roadmap
+
+1. Spring Security + JWT at the HTTP/GraphQL transport layer.
+2. GraphQL **subscriptions** for live schedule (reuse application services).
+3. Apollo Android client + persisted queries in the app module.

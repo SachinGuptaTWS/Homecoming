@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: homecoming-postgres
+    environment:
+      POSTGRES_DB: homecoming
+      POSTGRES_USER: homecoming
+      POSTGRES_PASSWORD: homecoming
+    ports:
+      - "5432:5432"
+    volumes:
+      - homecoming_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U homecoming -d homecoming"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  homecoming_pg_data:
