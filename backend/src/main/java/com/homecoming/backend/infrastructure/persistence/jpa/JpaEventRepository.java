@@ -4,11 +4,9 @@ import com.homecoming.backend.domain.event.Event;
 import com.homecoming.backend.domain.event.EventRepository;
 import java.util.List;
 import java.util.Optional;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@Profile("!inmemory")
 class JpaEventRepository implements EventRepository {
 
     private final EventEntityJpaRepository eventEntityJpaRepository;

@@ -1,6 +1,8 @@
 # HomeComing
 
-Single-activity Jetpack Compose app aligned with [Google app architecture](https://developer.android.com/topic/architecture) and [Now in Android](https://github.com/android/nowinandroid) conventions.
+Working name for a Jetpack Compose client + GraphQL backend. **Product problem statement is intentionally unset** — the codebase is a neutral shell you can aim at a specific use case later.
+
+Single-activity app aligned with [Google app architecture](https://developer.android.com/topic/architecture) and [Now in Android](https://github.com/android/nowinandroid) conventions.
 
 **Full design:** [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · **Gradle module plan:** [docs/MODULARIZATION_ROADMAP.md](docs/MODULARIZATION_ROADMAP.md)
 
@@ -14,7 +16,7 @@ app/
 ├── core/
 │   ├── model/                  # Event, HomeHighlight
 │   ├── domain/                 # Use cases (Flow from repositories)
-│   ├── data/                   # EventRepository + in-memory impl + local source
+│   ├── data/                   # EventRepository + GraphQL client
 │   ├── designsystem/theme/
 │   └── navigation/             # Typed Route, destinations, NavController helpers
 └── feature/{home,events,profile}/

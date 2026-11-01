@@ -1,5 +1,7 @@
 # HomeComing architecture
 
+**HomeComing** is the project name only — UI copy and domain models stay generic until a concrete product problem is chosen.
+
 This document follows [Guide to app architecture](https://developer.android.com/topic/architecture), [Now in Android (NIA)](https://github.com/android/nowinandroid), and [modularization patterns](https://developer.android.com/topic/modularization/patterns). It is the source of truth for how this repo is organized and where new code belongs.
 
 ## Principles (2025–2026 baseline)
@@ -44,7 +46,7 @@ flowchart TB
 
 - **UI layer**: Compose `Screen` (stateless), `Route` (wires ViewModel + nav callbacks), `ViewModel` (UI state holder).
 - **Domain layer**: Small `operator fun invoke()` use cases that expose or combine repository streams. NIA uses domain for read/transform logic; **writes/events often go straight to repositories** from ViewModels ([NIA discussion](https://github.com/android/nowinandroid/discussions/1273)).
-- **Data layer**: `EventRepository` is the public API; `InMemoryEventRepository` and local/network sources are `internal`.
+- **Data layer**: `EventRepository` is the public API; `GraphqlEventRepository` and network clients are `internal`.
 
 ## Current repo layout (single `:app` module)
 
@@ -115,20 +117,20 @@ See [MODULARIZATION_ROADMAP.md](MODULARIZATION_ROADMAP.md) for phased extraction
 
 [Hilt](https://developer.android.com/training/dependency-injection/hilt-android) binds:
 
-- `EventRepository` → `InMemoryEventRepository` (swap for fake in tests).
+- `EventRepository` → `GraphqlEventRepository` (fakes in unit tests when added).
 - Use cases and `@HiltViewModel` ViewModels.
 
 No service locators or `companion object` defaults on repositories.
 
 ## Data evolution path
 
-Today: in-memory `EventLocalDataSource` (sample content).
+Today: GraphQL over OkHttp to the Spring backend (`BuildConfig.GRAPHQL_URL`); empty states when the database has no rows.
 
 Next steps (typical production stack):
 
-1. `:core:database` (Room) + `:core:network` (Retrofit/Ktor) — both depend on `:core:model`.
-2. Repository coordinates local + remote (offline-first, as in [data layer guide](https://developer.android.com/topic/architecture/data-layer)).
-3. Domain use cases combine streams (e.g. bookmarked events) when rules get non-trivial.
+1. Apollo codegen + persisted queries; optional `:core:database` (Room) for offline-first.
+2. Repository coordinates local cache + remote (as in [data layer guide](https://developer.android.com/topic/architecture/data-layer)).
+3. Domain use cases combine streams when rules get non-trivial.
 
 ## Quality and performance (already in repo)
 

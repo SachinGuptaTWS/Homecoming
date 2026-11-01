@@ -13,6 +13,6 @@ fun ProfileRoute(
     ProfileScreen(
         uiState = uiState,
         onDisplayNameChange = viewModel::onDisplayNameChange,
-        onGraduationYearChange = viewModel::onGraduationYearChange,
+        onBioChange = viewModel::onBioChange,
     )
 }

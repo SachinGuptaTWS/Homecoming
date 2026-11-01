@@ -57,15 +57,23 @@ internal fun HomeScreen(
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = stringResource(
-                        R.string.home_featured_event_format,
-                        uiState.featuredTitle,
-                        uiState.featuredDates,
-                    ),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
+                if (uiState.featuredTitle.isBlank() && uiState.featuredDates.isBlank()) {
+                    Text(
+                        text = stringResource(R.string.home_featured_empty),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                } else {
+                    Text(
+                        text = stringResource(
+                            R.string.home_featured_event_format,
+                            uiState.featuredTitle,
+                            uiState.featuredDates,
+                        ),
+                        style = MaterialTheme.typography.bodyLarge,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(onClick = onViewScheduleClick) {
                     Text(stringResource(R.string.home_view_schedule))

@@ -18,7 +18,7 @@ class ProfileViewModel @Inject constructor() : ViewModel() {
         _uiState.update { it.copy(displayName = value) }
     }
 
-    fun onGraduationYearChange(raw: String) {
-        _uiState.update { it.copy(graduationYear = raw.filter(Char::isDigit).take(4)) }
+    fun onBioChange(value: String) {
+        _uiState.update { it.copy(bio = value.take(160)) }
     }
 }

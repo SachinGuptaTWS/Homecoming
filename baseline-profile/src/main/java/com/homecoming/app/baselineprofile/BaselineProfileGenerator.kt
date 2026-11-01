@@ -47,6 +47,6 @@ class BaselineProfileGenerator {
         device.wait(Until.hasObject(By.text("HomeComing")), WAIT_MS)
 
         device.findObject(By.text("View schedule"))?.click()
-        device.wait(Until.hasObject(By.text("Opening ceremony")), WAIT_MS)
+        device.wait(Until.hasObject(By.text("Events")), WAIT_MS)
     }
 }

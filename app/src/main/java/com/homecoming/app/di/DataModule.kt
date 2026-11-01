@@ -1,7 +1,7 @@
 package com.homecoming.app.di
 
 import com.homecoming.app.core.data.EventRepository
-import com.homecoming.app.core.data.InMemoryEventRepository
+import com.homecoming.app.core.data.GraphqlEventRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 internal abstract class DataModule {
 
     @Binds
-    abstract fun bindEventRepository(impl: InMemoryEventRepository): EventRepository
+    abstract fun bindEventRepository(impl: GraphqlEventRepository): EventRepository
 }

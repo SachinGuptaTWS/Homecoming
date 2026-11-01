@@ -101,7 +101,7 @@ Tests: `.\gradlew.bat :backend:test` (`@GraphQlTest`, unit tests on application 
 | **Migrations** | `backend/src/main/resources/db/migration/` (Flyway, `ddl-auto: validate`) |
 | **JPA entities** | `infrastructure.persistence.jpa.entity` (not exposed to domain) |
 | **Adapters** | `JpaEventRepository`, `JpaHomeHighlightRepository` implement domain ports |
-| **Optional** | Profile `inmemory` skips Postgres (demo adapters only) |
+| **Seed data** | None — populate via admin/API when you define your use case |
 
 Local:
 
@@ -112,6 +112,8 @@ $env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot'
 ```
 
 Tests use **H2** in PostgreSQL compatibility mode with the same Flyway scripts (`test` profile).
+
+If Flyway complains after pulling (removed `V2__seed_schedule`), reset local Postgres: `docker compose down -v && docker compose up -d`.
 
 ## Roadmap
 

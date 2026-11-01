@@ -16,12 +16,11 @@ class ScheduleGraphQlIntegrationTest {
     private GraphQlTester graphQlTester;
 
     @Test
-    void eventsQuery_usesInMemorySeedData() {
+    void eventsQuery_whenDatabaseEmpty_returnsEmptyList() {
         graphQlTester
                 .documentName("events")
                 .execute()
-                .path("events[*].id")
-                .entityList(String.class)
-                .containsExactly("1", "2", "3", "4");
+                .path("events")
+                .matchesJson("[]");
     }
 }

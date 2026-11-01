@@ -35,7 +35,7 @@ class ScheduleQueryGraphQlTest {
     @Test
     void eventsQuery_returnsSchedule() {
         given(eventQueryService.listSchedule())
-                .willReturn(List.of(new Event("1", "Opening ceremony", "Fri · 6:00 PM", "Main quad")));
+                .willReturn(List.of(new Event("1", "Sample event", "Fri · 6:00 PM", "Venue A")));
 
         graphQlTester
                 .documentName("events")
@@ -43,21 +43,21 @@ class ScheduleQueryGraphQlTest {
                 .path("events")
                 .matchesJson(
                         """
-                        [{"id":"1","title":"Opening ceremony","scheduleLabel":"Fri · 6:00 PM","location":"Main quad"}]
+                        [{"id":"1","title":"Sample event","scheduleLabel":"Fri · 6:00 PM","location":"Venue A"}]
                         """);
     }
 
     @Test
     void homeHighlightQuery_returnsFeatured() {
         given(homeHighlightQueryService.getCurrent())
-                .willReturn(new HomeHighlight("Alumni Homecoming Weekend", "Oct 12–14"));
+                .willReturn(new HomeHighlight("Featured headline", "Date range"));
 
         graphQlTester
                 .documentName("homeHighlight")
                 .execute()
                 .path("homeHighlight.title")
                 .entity(String.class)
-                .isEqualTo("Alumni Homecoming Weekend");
+                .isEqualTo("Featured headline");
     }
 
     @Test

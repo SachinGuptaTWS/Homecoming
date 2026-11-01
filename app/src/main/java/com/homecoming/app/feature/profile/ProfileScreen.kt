@@ -23,7 +23,7 @@ import com.homecoming.app.R
 internal fun ProfileScreen(
     uiState: ProfileUiState,
     onDisplayNameChange: (String) -> Unit,
-    onGraduationYearChange: (String) -> Unit,
+    onBioChange: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -56,12 +56,13 @@ internal fun ProfileScreen(
                     singleLine = true,
                 )
                 OutlinedTextField(
-                    value = uiState.graduationYear,
-                    onValueChange = onGraduationYearChange,
-                    label = { Text(stringResource(R.string.profile_graduation_year)) },
+                    value = uiState.bio,
+                    onValueChange = onBioChange,
+                    label = { Text(stringResource(R.string.profile_bio)) },
                     modifier = Modifier.fillMaxWidth(),
-                    singleLine = true,
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    minLines = 2,
+                    maxLines = 4,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 )
             }
         }

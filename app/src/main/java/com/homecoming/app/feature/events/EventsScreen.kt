@@ -42,17 +42,25 @@ internal fun EventsScreen(
             modifier = Modifier.padding(top = 8.dp, bottom = 16.dp),
         )
 
-        LazyColumn(
-            modifier = Modifier.weight(1f),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            contentPadding = PaddingValues(bottom = 24.dp),
-        ) {
-            items(
-                items = uiState.events,
-                key = Event::id,
-                contentType = { EventRowContentType },
-            ) { event ->
-                EventRow(event = event)
+        if (uiState.events.isEmpty()) {
+            Text(
+                text = stringResource(R.string.events_empty),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
+            )
+        } else {
+            LazyColumn(
+                modifier = Modifier.weight(1f),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
+                contentPadding = PaddingValues(bottom = 24.dp),
+            ) {
+                items(
+                    items = uiState.events,
+                    key = Event::id,
+                    contentType = { EventRowContentType },
+                ) { event ->
+                    EventRow(event = event)
+                }
             }
         }
     }

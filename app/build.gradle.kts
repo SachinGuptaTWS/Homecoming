@@ -18,6 +18,12 @@ android {
         versionCode = 1
         versionName = "1.0.0"
 
+        buildConfigField(
+            "String",
+            "GRAPHQL_URL",
+            "\"http://10.0.2.2:8080/graphql\"",
+        )
+
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -39,6 +45,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     packaging {
         resources {
@@ -72,6 +79,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.profileinstaller)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.okhttp)
+    implementation(libs.kotlinx.coroutines.android)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.foundation)
     implementation(libs.androidx.ui)
