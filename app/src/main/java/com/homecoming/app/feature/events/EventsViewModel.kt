@@ -1,0 +1,23 @@
+package com.homecoming.app.feature.events
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.homecoming.app.core.data.EventRepository
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
+
+class EventsViewModel(
+    repository: EventRepository = EventRepository.default,
+) : ViewModel() {
+
+    val uiState: StateFlow<EventsUiState> =
+        repository.observeSchedule()
+            .map(::EventsUiState)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5_000),
+                initialValue = EventsUiState(),
+            )
+}

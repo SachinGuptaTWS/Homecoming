@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HomeComing</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_events">Events</string>
+    <string name="nav_profile">Profile</string>
+
+    <string name="home_welcome">Welcome back</string>
+    <string name="home_title">HomeComing</string>
+    <string name="home_subtitle">Plan reunions, follow events, and stay connected with your community.</string>
+    <string name="home_next_up">Next up</string>
+    <string name="home_view_schedule">View schedule</string>
+    <string name="home_getting_started">Getting started</string>
+    <string name="home_getting_started_body">Use the Events tab to browse activities, and Profile to set your details.</string>
+    <string name="home_featured_event_format">%1$s · %2$s</string>
+
+    <string name="events_title">Events</string>
+    <string name="events_subtitle">Sample schedule — we can wire this to a backend later.</string>
+
+    <string name="profile_title">Profile</string>
+    <string name="profile_subtitle">Tell others who you are at homecoming.</string>
+    <string name="profile_display_name">Display name</string>
+    <string name="profile_graduation_year">Graduation year</string>
+</resources>
