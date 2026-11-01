@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.homecoming.app"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         applicationId = "com.homecoming.app"
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material.icons.core)
+    implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.navigation.compose)
     baselineProfile(project(":baseline-profile"))
     debugImplementation(libs.androidx.ui.tooling)

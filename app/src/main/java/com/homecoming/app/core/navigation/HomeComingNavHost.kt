@@ -2,6 +2,7 @@ package com.homecoming.app.core.navigation
 
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -71,7 +72,7 @@ private fun HomeComingBottomBar(navController: NavHostController) {
 }
 
 @Composable
-private fun BottomNavItem(
+private fun RowScope.BottomNavItem(
     destination: TopLevelDestination,
     selected: Boolean,
     navController: NavHostController,

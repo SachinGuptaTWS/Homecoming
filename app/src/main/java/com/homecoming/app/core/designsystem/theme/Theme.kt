@@ -2,12 +2,11 @@ package com.homecoming.app.core.designsystem.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material3.MaterialExpressiveTheme
-import androidx.compose.material3.MotionScheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.expressiveLightColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -28,12 +27,19 @@ private val DarkColorScheme = darkColorScheme(
     surfaceContainerHigh = Color(0xFF32203A),
 )
 
-private val LightColorScheme = expressiveLightColorScheme().copy(
+private val LightColorScheme = lightColorScheme(
     primary = PurpleDeep,
     onPrimary = OnPurple,
     primaryContainer = PurpleLight,
+    onPrimaryContainer = PurpleDeep,
     secondary = GoldMuted,
+    onSecondary = PurpleDeep,
     secondaryContainer = GoldAccent,
+    onSecondaryContainer = PurpleDeep,
+    background = CreamBackground,
+    onBackground = PurpleDeep,
+    surface = CreamBackground,
+    onSurface = PurpleDeep,
 )
 
 @Composable
@@ -52,9 +58,8 @@ fun HomeComingTheme(
         else -> LightColorScheme
     }
 
-    MaterialExpressiveTheme(
+    MaterialTheme(
         colorScheme = colorScheme,
-        motionScheme = MotionScheme.expressive(),
         shapes = HomeComingShapes,
         typography = HomeComingTypography,
         content = content,
