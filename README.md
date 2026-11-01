@@ -35,7 +35,24 @@ Navigation: `@Serializable sealed interface Route` with `composable<Route.Home>`
 
 AGP **9.5**, Kotlin **2.4.21**, Compose BOM **2026.09.00**, Navigation **2.10.2**, Hilt **2.60**, KSP, Baseline Profile **1.5.0**.
 
-## Run
+## Backend (Spring Boot + GraphQL)
+
+Java **17**, Spring Boot **3.5**, **GraphQL** API (not REST for product data). Layered hexagonal layout — [docs/BACKEND.md](docs/BACKEND.md).
+
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot'
+.\gradlew.bat :backend:bootRun
+```
+
+| URL | Purpose |
+|-----|---------|
+| `POST /graphql` | GraphQL endpoint |
+| `http://localhost:8080/graphiql` | GraphiQL (local) |
+| `/actuator/health` | Health |
+
+Tests: `.\gradlew.bat :backend:test`
+
+## Run (Android)
 
 Android Studio **2026.2.2+**, JDK **17**, SDK **37**.
 

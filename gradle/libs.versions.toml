@@ -15,6 +15,8 @@ uiautomator = "2.3.0"
 hilt = "2.60.1"
 hiltNavigationCompose = "1.2.0"
 ksp = "2.3.10"
+springBoot = "3.5.13"
+springDependencyManagement = "1.1.7"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -40,6 +42,12 @@ androidx-test-uiautomator = { group = "androidx.test.uiautomator", name = "uiaut
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
+spring-boot-starter-graphql = { group = "org.springframework.boot", name = "spring-boot-starter-graphql" }
+spring-graphql-test = { group = "org.springframework.graphql", name = "spring-graphql-test" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-configuration-processor = { group = "org.springframework.boot", name = "spring-boot-configuration-processor" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -50,3 +58,5 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 baselineprofile = { id = "androidx.baselineprofile", version.ref = "baselineprofile" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }

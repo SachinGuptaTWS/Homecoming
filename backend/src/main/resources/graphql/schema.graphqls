@@ -1,0 +1,23 @@
+"""
+HomeComing GraphQL schema — contract for Android, web, and future clients.
+"""
+type Query {
+    "Ordered event schedule."
+    events: [Event!]!
+    "Single event by id; null if not found (see errors for NOT_FOUND)."
+    event(id: ID!): Event
+    "Featured summary for the home screen."
+    homeHighlight: HomeHighlight!
+}
+
+type Event {
+    id: ID!
+    title: String!
+    scheduleLabel: String!
+    location: String!
+}
+
+type HomeHighlight {
+    title: String!
+    dates: String!
+}

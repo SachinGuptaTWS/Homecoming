@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: homecoming-backend
+  profiles:
+    default: local
+  graphql:
+    path: /graphql
+    graphiql:
+      enabled: true
+    schema:
+      locations: classpath:graphql/
+      file-extensions: .graphqls
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when_authorized
+
+homecoming:
+  api:
+    cors-allowed-origin-patterns:
+      - "http://localhost:*"
+      - "http://127.0.0.1:*"
+      - "http://10.0.2.2:*"

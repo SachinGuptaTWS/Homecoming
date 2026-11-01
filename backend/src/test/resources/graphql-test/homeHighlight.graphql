@@ -1,0 +1,6 @@
+query homeHighlight {
+  homeHighlight {
+    title
+    dates
+  }
+}

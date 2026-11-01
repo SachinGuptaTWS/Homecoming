@@ -13,3 +13,4 @@ captures/
 *.aab
 app/build/compose_compiler/
 baseline-profile/build/
+/backend/build/

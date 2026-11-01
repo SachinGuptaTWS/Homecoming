@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "HomeComing"
 include(":app")
 include(":baseline-profile")
+include(":backend")
